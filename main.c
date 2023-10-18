@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int add(int , int);
+int add(int, int);
 int subtract(int, int);
 int multiply(int, int);
-double divide(int, int);
+float divide(int, int);
 
 int main()
 {
@@ -24,24 +24,28 @@ int main()
 
     switch(operation){
         case '+':
-        printf("Result of Add Operation is =  %i \n", add(firstNum, secondNum));
-        break;
+            printf("Result of Add Operation is =  %i \n\n", add(firstNum, secondNum));
+            break;
 
         case '-':
-        printf("Result of Add Operation is =  %i \n", subtract(firstNum, secondNum));
-        break;
+            printf("Result of subtract Operation is =  %i \n\n", subtract(firstNum, secondNum));
+            break;
 
         case '*':
-        printf("Result of Add Operation is =  %i \n", multiply(firstNum, secondNum));
-        break;
+            printf("Result of multiply Operation is =  %i \n\n", multiply(firstNum, secondNum));
+            break;
 
         case '/':
-        printf("Result of Add Operation is =  %f \n", divide(firstNum, secondNum));
-        break;
+            if (divide(firstNum, secondNum) == -1){
+                printf("Error Division by Zero \n\n");
+            }else{
+                printf("Result of divide Operation is =  %f \n\n", divide(firstNum, secondNum));
+            }
+            break;
 
         default:
-            printf("Default Case Hit");
-    }
+            printf("Error, Try Again . . . \n\n");
+        }
 
     return 0;
 }
@@ -60,7 +64,11 @@ int multiply(int firstNum, int secondNum)
 {
     return firstNum * secondNum;
 }
-double divide(int firstNum, int secondNum)
+float divide(int firstNum, int secondNum)
 {
-    return (double)firstNum / (double)secondNum;
+    if (secondNum == 0)
+        return -1;
+    else
+        return (double)firstNum / (double)secondNum;
+
 }
